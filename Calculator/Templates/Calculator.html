@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="Calculator.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="display">
+            <span id="display">0</span>
+        </div>
+        <form method="POST">
+            <input type="hidden" id="expression" name="expression" value="">
+            <div class="buttons">
+                <button type="button" class="button clear" onclick="clearDisplay()">C</button>
+                <button type="button" class="button operator" onclick="appendOperator('/')">/</button>
+                <button type="button" class="button operator" onclick="appendOperator('*')">*</button>
+                <button type="button" class="button operator" onclick="appendOperator('-')">-</button>
+                <button type="button" class="button" onclick="appendNumber('7')">7</button>
+                <button type="button" class="button" onclick="appendNumber('8')">8</button>
+                <button type="button" class="button" onclick="appendNumber('9')">9</button>
+                <button type="button" class="button operator" onclick="appendOperator('+')">+</button>
+                <button type="button" class="button" onclick="appendNumber('4')">4</button>
+                <button type="button" class="button" onclick="appendNumber('5')">5</button>
+                <button type="button" class="button" onclick="appendNumber('6')">6</button>
+                <button type="button" class="button double operator" onclick="appendOperator('.')">.</button>
+                <button type="button" class="button" onclick="appendNumber('1')">1</button>
+                <button type="button" class="button" onclick="appendNumber('2')">2</button>
+                <button type="button" class="button" onclick="appendNumber('3')">3</button>
+                <button type="button" class="button equal" onclick="submitForm()">=</button>
+            </div>
+        </form>
+        <h2>Result: <span id="result">{{ result }}</span></h2>
+    </div>
+    <script>
+        function appendNumber(number) {
+            const display = document.getElementById('display');
+            const expression = document.getElementById('expression');
+            if (display.innerHTML === '0') {
+                display.innerHTML = number;
+            } else {
+                display.innerHTML += number;
+            }
+            expression.value += number;
+        }
+
+        function appendOperator(operator) {
+            const display = document.getElementById('display');
+            const expression = document.getElementById('expression');
+            if (!['+', '-', '*', '/'].includes(display.innerHTML.slice(-1))) {
+                display.innerHTML += operator;
+                expression.value += operator;
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').innerHTML = '0';
+            document.getElementById('expression').value = '';
+        }
+
+        function submitForm() {
+            document.querySelector('form').submit();
+        }
+    </script>
+</body>
+
+</html>
