@@ -38,6 +38,11 @@ This Repository showcases the Web App using Flask task and projects. It is part 
    ```sh
    cd Web-App-Development-Using-Flask
    ```
+
+3. Navigate to the project folder:
+   ```sh
+   cd Calculator
+   ```
    
 <br>
 
